@@ -2,7 +2,7 @@
 
 from flask import Flask, render_template, request
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, IntegerField, DateField, SelectField
 
 app = Flask(__name__)
 
@@ -11,7 +11,10 @@ app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'
 class BasicForm(FlaskForm):
     first_name = StringField('First Name')
     last_name = StringField('Last Name')
-    submit = SubmitField('Add Name')
+    age = IntegerField('Age')
+    birth_date = DateField('Date of Birth')
+    language = SelectField('Language', choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')])
+    submit = SubmitField('Submit')
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
